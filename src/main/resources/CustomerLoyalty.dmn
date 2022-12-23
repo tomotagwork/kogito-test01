@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/test01" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_872367EF-920E-40FA-8754-D3CD819381D4" name="CustomerLoyalty" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/test01">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_E40F4109-5A6F-4C2F-877C-A77F0DDE9ACE" name="LoyaltyIn" isCollection="false">
+    <dmn:itemComponent id="_8C6BFF17-BF66-4CD0-834E-AF19E8F17B09" name="rank" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_7275345E-F8B6-49F8-9DBA-BBCA091BF421" name="LoyaltyOut" isCollection="false">
+    <dmn:itemComponent id="_56392239-75A7-4E74-BAD1-22A041C1CC51" name="discountRate" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_DE1DD289-5A7D-48F8-BF54-D333C7B363BD" name="message" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_1139F92D-BE31-486C-AF48-9635FB648B53" name="loyalty">
+    <dmn:extensionElements/>
+    <dmn:variable id="_BC4249CA-9F1D-4FDF-92C9-E3534BF0A1DF" name="loyalty" typeRef="LoyaltyIn"/>
+  </dmn:inputData>
+  <dmn:decision id="_3A219F6C-99C3-44A5-84E7-781C9C6DDE35" name="decisionLoyalty">
+    <dmn:extensionElements/>
+    <dmn:variable id="_7DC1BF65-FF4A-4B75-BC33-D9AE2B7BAA43" name="decisionLoyalty" typeRef="LoyaltyOut"/>
+    <dmn:informationRequirement id="_B6FAD577-D619-4132-A683-D77E6EC13B42">
+      <dmn:requiredInput href="#_1139F92D-BE31-486C-AF48-9635FB648B53"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_DEFC4451-976E-46FC-B63A-045D0DD940B5" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_BB2D4A2B-F7AD-4A62-882D-031558683988">
+        <dmn:inputExpression id="_D3563D73-4A94-42AE-935F-0EA7DAF3FAA7" typeRef="string">
+          <dmn:text>loyalty.rank</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_9D2CAAAA-FB13-4ECD-B254-659A3AF13A89" name="discountRate" typeRef="number"/>
+      <dmn:output id="_50E4922A-5789-4C5A-98CA-7C9E00DA54FA" name="message" typeRef="string"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_7E06E148-3F4E-48B2-AF48-BD246AE239DC">
+        <dmn:inputEntry id="_405EB730-475E-458E-8DFC-FF0D8824B188">
+          <dmn:text>"プラチナ"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_78C97FDF-9A92-4710-93CC-EFCE0D5AC08F">
+          <dmn:text>0.3</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_4565C628-02C6-4C76-8D74-B13F2A2C6510">
+          <dmn:text>"platinum member"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_70546392-09ED-4809-8842-81F50B8FF0E9">
+        <dmn:inputEntry id="_32D9B077-EAFA-48F9-B5CD-3FD9C712752C">
+          <dmn:text>"ゴールド"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_D2155EAF-AF3A-4244-83C8-99A5E7352AE1">
+          <dmn:text>0.3</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_7EC9F105-B945-47E4-99B3-9255F4F2DB06">
+          <dmn:text>"gold member"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_681AF6EC-7E76-402C-B4B6-5EFE656D504B">
+        <dmn:inputEntry id="_1F32815E-9989-4CFF-9E3E-F96ACF99413D">
+          <dmn:text>"シルバー"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_915750CF-302B-4A2F-B321-855B8347C275">
+          <dmn:text>0.3</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_E4E3C1AD-3BE7-487F-BD73-87B7BB47EAE0">
+          <dmn:text>"silver member"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_271F0E0D-09F3-4820-951F-8940603ED65E">
+        <dmn:inputEntry id="_8AF227D9-EF59-45F1-A72A-B62A0723C3B3">
+          <dmn:text>"ブロンズ"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_700AD0D4-B351-4294-A58B-655F828ACE8B">
+          <dmn:text>0.3</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_030062BD-2EA3-41DF-89EF-F8A348660CE8">
+          <dmn:text>"bronze member"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_93AF35DA-410C-411B-888D-584BD4F8BCEF" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_DEFC4451-976E-46FC-B63A-045D0DD940B5">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>196</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape xmlns:p0="https://kiegroup.org/dmn/_13B27E70-18B5-4370-916C-43EC8ACB2569" id="dmnshape-drg-_1139F92D-BE31-486C-AF48-9635FB648B53" dmnElementRef="p0:_1139F92D-BE31-486C-AF48-9635FB648B53" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="248" y="210" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape xmlns:p1="https://kiegroup.org/dmn/_13B27E70-18B5-4370-916C-43EC8ACB2569" id="dmnshape-drg-_3A219F6C-99C3-44A5-84E7-781C9C6DDE35" dmnElementRef="p1:_3A219F6C-99C3-44A5-84E7-781C9C6DDE35" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="237" y="84" width="124" height="54"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge xmlns:p2="https://kiegroup.org/dmn/_13B27E70-18B5-4370-916C-43EC8ACB2569" id="dmnedge-drg-_B6FAD577-D619-4132-A683-D77E6EC13B42" dmnElementRef="p2:_B6FAD577-D619-4132-A683-D77E6EC13B42">
+        <di:waypoint x="298" y="235"/>
+        <di:waypoint x="299" y="138"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
